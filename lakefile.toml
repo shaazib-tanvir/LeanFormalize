@@ -1,0 +1,6 @@
+name = "LeanFormalize"
+version = "0.1.0"
+defaultTargets = ["LeanFormalize"]
+
+[[lean_lib]]
+name = "LeanFormalize"
