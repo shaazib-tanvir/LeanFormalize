@@ -8,7 +8,7 @@ namespace LeanFormalize
 
 syntax (name := formalize_command) "#formalize" str : command
 
-set_option formalize.key "AIzaSyCvanvHzlrDYICDjTThsQzUPA82SQl5uW8"
+set_option formalize.key ""
 
 private def tryCatchRuntimeEx (tryBody : CommandElabM α) (catchBody : Exception → CommandElabM α) := do
   liftCoreM <|
@@ -87,3 +87,4 @@ meta def elabFormalizeCommand : CommandElab := fun stx =>
     throwUnsupportedSyntax
 
 end LeanFormalize
+
