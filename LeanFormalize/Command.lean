@@ -1,5 +1,6 @@
 import LeanFormalize.Query
 import LeanFormalize.ProviderOption
+import LeanFormalize.AttemptsOption
 import Lean
 open Lean Meta Elab Command Tactic
 
@@ -74,7 +75,9 @@ private def generateFormalization (prompt : String) (previousCode : Option Strin
 meta def elabFormalizeCommand : CommandElab := fun stx =>
   match stx with
   | `(command|#formalize $prompt:str) => do
-    let code ← generateFormalization prompt.getString
+    let opts ← getOptions
+    let attempts := formalize.attempts.get opts
+    let code ← generateFormalization prompt.getString (attempts := attempts)
     let suggestion : Hint.Suggestion := {
       suggestion := TryThis.SuggestionText.string code
     }
